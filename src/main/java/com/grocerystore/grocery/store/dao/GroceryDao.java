@@ -15,4 +15,6 @@ public class GroceryDao {
     private Long id;
     private String grocery_name;
     private Long price;
+
+    public GroceryDao(){};
 }
