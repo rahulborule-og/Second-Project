@@ -7,4 +7,5 @@ import com.grocerystore.grocery.store.dao.GroceryDao;
 public interface GroceryService {
 GroceryDao addGrocery(GroceryDao gdao);
 GroceryDao getGroceryDetail(Long id);
+void deleteGrocery(Long id);
 }

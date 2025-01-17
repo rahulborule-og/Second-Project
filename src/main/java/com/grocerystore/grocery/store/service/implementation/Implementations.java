@@ -29,4 +29,10 @@ public class Implementations implements GroceryService {
         return EntityMappedtoDto.mapEntitytoDto(fetchedg);
 
     }
+
+    @Override
+    public void deleteGrocery(Long id) {
+        Groceries todeletegro=grrepo.findById(id).orElseThrow(()->new ReourceNotFound("This grocery does not exist"));
+        grrepo.deleteById(id);
+    }
 }
