@@ -28,4 +28,10 @@ public ResponseEntity<GroceryDao> getGroceryDetails(@PathVariable("id") Long id)
     GroceryDao fetchedgrocery=groser.getGroceryDetail(id);
     return ResponseEntity.ok(fetchedgrocery);
 }
+
+@DeleteMapping("{id}")
+    public ResponseEntity<String> deleteGrocery(@PathVariable("id") Long id){
+    groser.deleteGrocery(id);
+    return ResponseEntity.ok("Deleted Successfully");
+}
 }
