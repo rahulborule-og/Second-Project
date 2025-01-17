@@ -8,9 +8,13 @@ import com.grocerystore.grocery.store.mapper.EntityMappedtoDto;
 import com.grocerystore.grocery.store.repository.GroRepoistory;
 import com.grocerystore.grocery.store.service.GroceryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.mustache.MustacheResourceTemplateLoader;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class Implementations implements GroceryService {
@@ -50,6 +54,14 @@ public class Implementations implements GroceryService {
 
 
 
+
+    }
+
+    @Override
+    public List<GroceryDao> seeAllGrocery() {
+      List<Groceries> grocerieslist=grrepo.findAll();
+
+        return grocerieslist.stream().map((Groceries gro)->EntityMappedtoDto.mapEntitytoDto(gro)).collect(Collectors.toList());
 
     }
 }
