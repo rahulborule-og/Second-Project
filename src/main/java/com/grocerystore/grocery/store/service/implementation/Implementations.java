@@ -9,6 +9,7 @@ import com.grocerystore.grocery.store.repository.GroRepoistory;
 import com.grocerystore.grocery.store.service.GroceryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,5 +35,21 @@ public class Implementations implements GroceryService {
     public void deleteGrocery(Long id) {
         Groceries todeletegro=grrepo.findById(id).orElseThrow(()->new ReourceNotFound("This grocery does not exist"));
         grrepo.deleteById(id);
+    }
+
+    @Override
+    public GroceryDao updateDetails(Long id, GroceryDao gdao1) {
+        Groceries feteched=grrepo.findById(id).orElseThrow(()->new ReourceNotFound("This grocery does not exist"));
+        feteched.setId(gdao1.getId());
+        feteched.setPrice(gdao1.getGetPrice());
+        feteched.setName_of_grocery((gdao1.getName_of_grocery()));
+
+        Groceries updatedGrocery=grrepo.save(feteched);
+        return EntityMappedtoDto.mapEntitytoDto(updatedGrocery);
+
+
+
+
+
     }
 }
